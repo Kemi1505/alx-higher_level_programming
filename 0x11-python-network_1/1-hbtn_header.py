@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 import urllib.request
 import sys
-url = sys.argv[1]
-with urllib.request.urlopen(url) as response:
-    x_request_id = response.headers.get('X-Request-Id')
-    if x_request_id:
-        print(x_request_id)
-    else:
-        print("X-Request-Id not found in the response headers.")
 
+if __name__ == "__main__":
+    url = sys.argv[1]
+request = urllib.request.Request(url)
+with urllib.request.urlopen(request) as response:
+    print(dict(response.headers).get("X-Request-Id"))
 
